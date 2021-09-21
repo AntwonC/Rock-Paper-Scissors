@@ -1,6 +1,11 @@
 const MIN = 1; 
 const MAX = 3; 
 
+let gameCounter = 0; 
+let playerScore = 0; 
+let computerScore = 0; 
+let winnerText = ""; 
+
 function computerPlay() {
     let computerChoice = Math.floor(Math.random() * (MAX - MIN + 1)) + MIN; 
 
@@ -28,6 +33,7 @@ function playRound(playerSelection, computerPlay) {
     let playerChoice = playerSelection.toLowerCase(); 
     let resultText = ""; 
     let resultValue = -1; 
+  //  console.log(playerChoice); 
    //  console.log(computerPlay); 
 
     switch ( playerChoice ) {
@@ -85,7 +91,7 @@ function playRound(playerSelection, computerPlay) {
     return resultValue; 
 }
 
-function game() {
+/*function game(playerChoice) {
     
     let gameCounter = 0; 
     let playerScore = 0; 
@@ -93,8 +99,8 @@ function game() {
     let winnerText = ""; 
 
     while ( playerScore != 5 && computerScore != 5 ) {
-        let userChoice = prompt("Enter Rock, Paper, or Scissors"); 
-        let roundResult = playRound(userChoice, computerPlay()); 
+        //let userChoice = prompt("Enter Rock, Paper, or Scissors"); 
+        let roundResult = playRound(playerChoice, computerPlay()); 
         gameCounter++; 
 
         console.log(`Round ${gameCounter}`);
@@ -121,10 +127,74 @@ function game() {
 
     return winnerText; 
     
-}
+} */
+const gameButton = document.querySelectorAll(".gameChoice");
+const outputDiv = document.querySelector(".result");
+const score = document.querySelector("#gameScore"); 
+const round = document.querySelector("#roundNumber");
+
+gameButton.forEach((element) => {
+    element.addEventListener("click", () => {
+        let roundResult = playRound(element.textContent, computerPlay()); 
+        console.log(roundResult); 
+        gameCounter++; 
+
+        if ( roundResult === 4 ) {
+            //console.log("Tie! Next round"); 
+            winnerText = "Tie! Next round";
+        } else if ( roundResult === 5 ) {
+            playerScore++; 
+            winnerText = "You won this round!";
+            //console.log("You won this round!"); 
+        } else if ( roundResult === 6 ) {
+            computerScore++; 
+            winnerText = "Computer won this round.";
+            //console.log("Computer won this round.");
+        }
+
+        if ( playerScore === 5 ) {
+          
+            winnerText = "You won the game!";
+            score.textContent = `Player Score: ${playerScore}\rComputer Score: ${computerScore}`;
+            outputDiv.textContent = winnerText; 
+            gameCounter = 0; 
+            playerScore = 0; 
+            computerScore = 0; 
+            return;
+          
+        } else if ( computerScore === 5) {
+            
+            winnerText = "The computer bested you.";
+            score.textContent = `Player Score: ${playerScore}\rComputer Score: ${computerScore}`;
+            outputDiv.textContent = winnerText; 
+            gameCounter = 0; 
+            playerScore = 0; 
+            computerScore = 0;
+            return; 
+        
+        }
+
+        round.textContent = `Round ${gameCounter}`;
+        score.textContent = `Player Score: ${playerScore}\rComputer Score: ${computerScore}`;
+        outputDiv.textContent = winnerText; 
+        
+        
+        //outputDiv.textContent = game(element.textContent); 
+        //console.log(playRound(element.textContent, computerPlay()));
+        //console.log(element.textContent); 
+        //console.log(e.target);
+    });
+});
 
 
-let winner = game(); 
-console.log(winner); 
+//audio[data-key = "${e.keyCode}"]
+/*gameButton.addEventListener("click", (e) => {
+    console.log(e.target); 
+}); */
+
+
+
+//let winner = game(); 
+//console.log(winner); 
 //console.log(playRound(userChoice,computerPlay()));
 //computerPlay(); 
