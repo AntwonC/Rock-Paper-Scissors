@@ -136,7 +136,7 @@ const round = document.querySelector("#roundNumber");
 gameButton.forEach((element) => {
     element.addEventListener("click", () => {
         let roundResult = playRound(element.textContent, computerPlay()); 
-        console.log(roundResult); 
+       //console.log(roundResult); 
         gameCounter++; 
 
         if ( roundResult === 4 ) {
@@ -155,8 +155,8 @@ gameButton.forEach((element) => {
         if ( playerScore === 5 ) {
           
             winnerText = "You won the game!";
-            score[0].textContent = "Player Score: " + playerScore;
-            score[1].textContent = "Computer Score: " + computerScore;
+            score[0].textContent = "Player: " + playerScore;
+            score[1].textContent = "Computer: " + computerScore;
             outputDiv.textContent = winnerText; 
             gameCounter = 0; 
             playerScore = 0; 
@@ -166,8 +166,8 @@ gameButton.forEach((element) => {
         } else if ( computerScore === 5) {
             
             winnerText = "The computer bested you.";
-            score[0].textContent = "Player Score: " + playerScore;
-            score[1].textContent = "Computer Score: " + computerScore;
+            score[0].textContent = "Player: " + playerScore;
+            score[1].textContent = "Computer: " + computerScore;
             outputDiv.textContent = winnerText; 
             gameCounter = 0; 
             playerScore = 0; 
@@ -177,8 +177,8 @@ gameButton.forEach((element) => {
         }
         
         round.textContent = `Round ${gameCounter}`;
-        score[0].textContent = "Player Score: " + playerScore;
-        score[1].textContent = "Computer Score: " + computerScore;
+        score[0].textContent = "Player: " + playerScore;
+        score[1].textContent = "Computer: " + computerScore;
         outputDiv.textContent = winnerText; 
         
         
