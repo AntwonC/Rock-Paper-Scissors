@@ -130,7 +130,7 @@ function playRound(playerSelection, computerPlay) {
 } */
 const gameButton = document.querySelectorAll(".gameChoice");
 const outputDiv = document.querySelector(".result");
-const score = document.querySelector("#gameScore"); 
+const score = document.querySelectorAll(".gameScore"); 
 const round = document.querySelector("#roundNumber");
 
 gameButton.forEach((element) => {
@@ -155,7 +155,8 @@ gameButton.forEach((element) => {
         if ( playerScore === 5 ) {
           
             winnerText = "You won the game!";
-            score.textContent = `Player Score: ${playerScore}\rComputer Score: ${computerScore}`;
+            score[0].textContent = "Player Score: " + playerScore;
+            score[1].textContent = "Computer Score: " + computerScore;
             outputDiv.textContent = winnerText; 
             gameCounter = 0; 
             playerScore = 0; 
@@ -165,7 +166,8 @@ gameButton.forEach((element) => {
         } else if ( computerScore === 5) {
             
             winnerText = "The computer bested you.";
-            score.textContent = `Player Score: ${playerScore}\rComputer Score: ${computerScore}`;
+            score[0].textContent = "Player Score: " + playerScore;
+            score[1].textContent = "Computer Score: " + computerScore;
             outputDiv.textContent = winnerText; 
             gameCounter = 0; 
             playerScore = 0; 
@@ -173,9 +175,10 @@ gameButton.forEach((element) => {
             return; 
         
         }
-
+        
         round.textContent = `Round ${gameCounter}`;
-        score.textContent = `Player Score: ${playerScore}\rComputer Score: ${computerScore}`;
+        score[0].textContent = "Player Score: " + playerScore;
+        score[1].textContent = "Computer Score: " + computerScore;
         outputDiv.textContent = winnerText; 
         
         
