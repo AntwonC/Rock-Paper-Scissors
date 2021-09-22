@@ -128,14 +128,28 @@ function playRound(playerSelection, computerPlay) {
     return winnerText; 
     
 } */
+
+function choiceToString(choice) {
+
+    if ( choice === 1 ) {
+        return "Rock"; 
+    } else if ( choice === 2 ) {
+        return "Scissors"; 
+    } else if ( choice === 3 ) {
+        return "Paper"; 
+    }
+}
+
 const gameButton = document.querySelectorAll(".gameChoice");
 const outputDiv = document.querySelector(".result");
 const score = document.querySelectorAll(".gameScore"); 
 const round = document.querySelector("#roundNumber");
+const computerText = document.querySelector("#computerChoice"); 
 
 gameButton.forEach((element) => {
     element.addEventListener("click", () => {
-        let roundResult = playRound(element.textContent, computerPlay()); 
+        let computerChoice = computerPlay(); 
+        let roundResult = playRound(element.textContent, computerChoice); 
        //console.log(roundResult); 
         gameCounter++; 
 
@@ -180,6 +194,8 @@ gameButton.forEach((element) => {
         score[0].textContent = "Player: " + playerScore;
         score[1].textContent = "Computer: " + computerScore;
         outputDiv.textContent = winnerText; 
+        computerText.textContent = `Computer picked ${choiceToString(computerChoice)}.`;
+        
         
         
         //outputDiv.textContent = game(element.textContent); 

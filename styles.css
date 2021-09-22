@@ -67,6 +67,11 @@ html {
     font-family: Archivo; 
     font-size: 50px;
 }
+
+#computerChoice {
+    font-family: Archivo; 
+    font-size: 50px;
+}
 /* GAME CONTAINER ENDS */
 
 /* SCOREBOARD CONTAINER STARTS */
